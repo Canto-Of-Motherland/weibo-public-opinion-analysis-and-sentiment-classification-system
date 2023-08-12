@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <mata name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>主页</title>
+        <link rel="stylesheet" href="../static/css/main.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navigation">
+                <a href="/" class="labels title">微博舆情监控与分析系统</a>
+                <a href="/main-opinion-classification/" class="link link_1">情感分类</a>
+                <a href="/main-opinion-analysis/" class="link link_2">舆情分析</a>
+                <label class="labels user_info">{{ data.user_name|safe }} | {{ data.user_email | safe }}</label>
+                <button class="btn_out" id="btn_out" type="button">注销登录</button>
+            </div>
+            <div class="bottom">
+                <label class="info copyright ">©　武汉大学信息管理学院</label>
+                <label class="info author">by:　刘子忻 张几 王柯岩</label>
+                <label class="info contect">联系方式： 13863764729</label>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,131 @@
+body {
+    min-width: 1000px;
+    min-height: 600px;
+    background-color: #f7f7f7;
+}
+
+.container {
+    min-height: 100vh;
+}
+
+.navigation {
+    z-index: 11;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #f7f7f7;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+}
+
+.labels {
+    z-index: 12;
+    color: #090909;
+    position: absolute;
+}
+
+.title {
+    z-index: 12;
+    font-size: large;
+    font-weight: 700;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.title:hover {
+    text-decoration: none;
+    color: #090909;
+}
+
+.link {
+    z-index: 12;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 21px 20px;
+    color: #090909;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border-right: 1px solid;
+    border-left: 1px solid;
+    border-image: linear-gradient(to top, #090909, #f7f7f7) 1;
+    text-decoration: none;
+}
+
+.link:hover {
+    z-index: 13;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-image: linear-gradient(to top, #f7f7f7, #f7f7f7) 1;
+    transition-duration: 200ms;
+    text-decoration: none;
+    color: #090909;
+}
+
+.link_1 {
+    left: 300px;
+}
+
+.link_2 {
+    left: 413px
+}
+
+.user_info {
+    z-index: 12;
+    top: 50%;
+    right: 160px;
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+.btn_out {
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    right: 40px;
+    transform: translateY(-50%);
+    border-radius: 5px;
+    color: #f7f7f7;
+    font-weight: 600;
+    width: 100px;
+    height: 30px;
+    background-color: #090909;
+    font-size: medium;
+    border: hidden;
+    letter-spacing: 2px;
+}
+
+.bottom {
+    left: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: #090909;
+    width: 100%;
+    height: 120px;
+}
+
+.info {
+    color: #f7f7f7;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: small;
+    font-weight: 200;
+    transform: translate(-50%, -50%);
+}
+
+.copyright {
+    margin-top: -24px;
+}
+
+.author {
+    margin-top: 0;
+}
+
+.contect {
+    margin-top: 24px;
+}

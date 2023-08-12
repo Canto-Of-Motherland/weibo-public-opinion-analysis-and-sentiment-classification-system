@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <mata name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>登录</title>
+        <script defer src="../static/js/three.min.js"></script>
+        <script type="text/javascript" src="../static/js/jquery-3.7.0.js"></script>
+        <script type="text/javascript" src="../static/js/signIn.js"></script>
+        <script defer type="text/javascript" src="../static/js/background.js"></script>
+        <link rel="stylesheet" href="../static/css/signIn.css">
+    </head>
+    <body>
+        <div class="cover"></div>
+        <div class="container">
+            <canvas></canvas>
+            <form class="container_left" method="post" autocomplete="off">
+                {% csrf_token %}
+                <img class="svg key" src="../static/img/key.svg"/>
+                <table>
+                    <tr>
+                        <td colspan="2">
+                            <input type="text" class="inputs user_email_pass" name="user_email_pass" id="user_email_pass" placeholder="请输入注册邮箱" oninput="checkEmptyEmailPass(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <input type="password" class="inputs user_password" name="user_password" id="user_password" placeholder="请输入密码" oninput="checkEmptyPass(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/signup/" class="link">注册</a>
+                        </td>
+                        <td>
+                            <img onclick="left()" class="svg mail_change" src="../static/img/mail.svg"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button id="btn_signin_pass" class="btn signin_pass" type="button">登　录</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <form class="container_right" method="post" autocomplete="off">
+                {% csrf_token %}
+                <img class="svg mail" src="../static/img/mail.svg"/>
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" class="inputs user_email_code" name="user_email_code" id="user_email_code" placeholder="请输入注册邮箱" oninput="checkEmptyEmailCode(this)">
+                        </td>
+                        <td>
+                            <label class="occupy"></label>
+                        </td>
+                        <td>
+                            <button id="btn_get_code" class="btn_get_code" type="button">获取验证码</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="code_area" id="code_area">
+                                <input type="text" id="code_input" name="user_code" maxlength="6" onkeyup="checkForNum(this)"  onselect="return false;" onblur="checkForNum(this)" oninput="checkEmptyCode(this)">
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/signup/" class="link">注册</a>
+                        </td>
+                        <td>
+                            <img onclick="right()" class="svg key_change" src="../static/img/key.svg"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <button id="btn_signin_code" class="btn" type="button">登　录</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        <label class="labels left_labels email_info_pass" id="email_info_pass"></label>
+        <label class="labels left_labels pass_info" id="pass_info"></label>
+        <label class="labels right_labels email_info_code" id="email_info_code"></label>
+        <label class="labels right_labels code_info" id="code_info"></label>
+    </body>
+</html>

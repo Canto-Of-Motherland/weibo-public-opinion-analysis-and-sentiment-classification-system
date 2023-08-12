@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <mata name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>注册</title>
+        <script defer src="../static/js/three.min.js"></script>
+        <script type="text/javascript" src="../static/js/jquery-3.7.0.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script type="text/javascript" src="../static/js/signUp.js"></script>
+        <script defer type="text/javascript" src="../static/js/background.js"></script>
+        <link rel="stylesheet" href="../static/css/signUp.css">
+    </head>
+    <body>
+        <canvas></canvas>
+        <div class="container_out">
+            <label class="label">注册</label>
+            <form class="container_in" method="post" autocomplete="off">
+                <label class="labels left_labels email_info" id="email_info">邮箱</label>
+                <label class="labels left_labels code_info" id="code_info">222</label>
+                <label class="labels right_labels name_info" id="name_info">333</label>
+                <label class="labels right_labels pass_info" id="pass_info">444</label>
+                <label class="labels right_labels confirm_info" id="confirm_info">555</label>
+                {% csrf_token %}
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" class="inputs user_email" name="user_email" id="user_email" placeholder="请输入注册邮箱" oninput="checkEmptyEmail(this)">
+                        </td>
+                        <td>
+                            <button id="btn_get_code" class="btn_get_code" type="button">获取验证码</button>
+                        </td>
+                        <td>
+                            <label class="occupy"></label>
+                        </td>
+                        <td>
+                            <input type="text" class="inputs user_name" name="user_name" id="user_name" placeholder="请输入用户名" oninput="checkEmptyName(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="code_area" id="code_area">
+                                <input type="text" id="code_input" name="user_code" maxlength="6" onkeyup="checkForNum(this)"  onselect="return false;" onblur="checkForNum(this)" oninput="checkEmptyCode(this)">
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                                <div name="code_cell"></div>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="password" class="inputs user_password" name="user_password" id="user_password" placeholder="请输入密码" oninput="checkEmptyPass(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="/signin/" class="link">返回登录</a>
+                        </td>
+                        <td>
+                            <input type="password" class="inputs password_confirm" name="password_confirm" id="password_confirm" placeholder="请确认密码" oninput="checkEmptyConfirm(this)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button id="btn_to_next" class="btn btn_to_next" type="button">下一页</button>
+                        </td>
+                        <td>
+                            <button id="btn_to_prev" class="btn btn_to_prev" type="button" onclick="right()">上一页</button>
+                        </td>
+                        <td>
+                            <button id="btn_signup" class="btn btn_signup" type="button">注　册</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
