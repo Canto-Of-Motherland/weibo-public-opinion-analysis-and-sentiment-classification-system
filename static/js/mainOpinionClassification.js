@@ -5,8 +5,9 @@ $(document).ready(function() {
       this.picker.find('.datetimepicker-minutes').remove();
     };
 });
+
 $(function() {
-    let dateStart = $('#time_start').datetimepicker({
+    let dateStart = $('#date_start').datetimepicker({
         language: "zh-CN",
         weekStart: 1,
         todayBtn:  1,
@@ -36,6 +37,33 @@ $(function() {
 });
 
 $(document).ready(function() {
+    $('#btn_out').click(function() {
+        let cookies = document.cookie.split(',');
+        let pattern = /csrftoken=(.*)/m;
+        for (let j = 0; j < cookies.length; j++) {
+            if (pattern.test(cookies[j])) {
+                var csrf = pattern.exec(cookies[j])[1];
+            }
+        }
+        $.ajax({
+            url: '/',
+            type: 'POST',
+            data: {csrfmiddlewaretoken: csrf, func_code: '01'},
+            success: function() {
+                Swal.fire({
+                    title: '已安全退出',
+                    icon: 'success',
+                    showConfirmButton: true,
+                    confirmButtonText: "确　定",
+                    width: '300px',
+                }).then(() => {
+                    window.location.assign('/signin/');
+                });
+            },
+            error: function() {}
+        });
+    });
+
     $('#btn_search').click(function() {
         let cookies = document.cookie.split(',');
         let pattern = /csrftoken=(.*)/m;
@@ -47,7 +75,47 @@ $(document).ready(function() {
         $.ajax({
             url: '/main-opinion-classification/',
             type: 'POST',
-            data: {csrfmiddlewaretoken: csrf, keyword: $('#search').val(), time_start: $('#time_start').val(), time_end: $('#time_end').val()},
+            data: {csrfmiddlewaretoken: csrf, func_code: '1', keyword: $('#search').val(), time_start: $('#time_start').val(), time_end: $('#time_end').val()},
+            success: function(response) {
+                Plotly.newPlot('pie_figure_1', response['pie_figure_1']);
+                Plotly.newPlot('pie_figure_2', response['pie_figure_2']);
+                Plotly.newPlot('dot3d_figure', response['dot3d_figure']);
+                Plotly.newPlot('map_figure', response['map_figure']);
+            },
+            error: function() {}
+        });
+    });
+
+    $('#btn_upload').click(function() {
+        const form = new FormData();
+        let file = $('#file')[0].files[0];
+        let cookies = document.cookie.split(',');
+        let pattern = /csrftoken=(.*)/m;
+        for (let j = 0; j < cookies.length; j++) {
+            if (pattern.test(cookies[j])) {
+                var csrf = pattern.exec(cookies[j])[1];
+            }
+        }
+        form.append('func_code', '2');
+        form.append('file', file);
+        form.append('csrfmiddlewaretoken', csrf);
+
+        Swal.fire({
+            title: '已提交',
+            html: '预计运算时间小于 1 分钟',
+            icon: 'success',
+            timer: 3000,
+            timerProgressBar: true,
+            showConfirmButton: true,
+            confirmButtonText: "确　定",
+            width: '300px',
+        });
+        $.ajax({
+            url: 'http://127.0.0.1:8000/main-opinion-classification/',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: form,
             success: function(response) {
                 Plotly.newPlot('pie_figure_1', response['pie_figure_1']);
                 Plotly.newPlot('pie_figure_2', response['pie_figure_2']);
@@ -58,3 +126,10 @@ $(document).ready(function() {
         });
     });
 });
+
+function setPath(obj) {
+    let path = $(obj);
+    let file = path.prop('files')[0];
+    let fileName = file.name;
+    $('.occupy').text(fileName);
+}

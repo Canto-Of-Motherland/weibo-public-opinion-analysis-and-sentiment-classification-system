@@ -371,7 +371,6 @@ $(document).ready(function() {
                         showConfirmButton: true,
                         confirmButtonText: "确　定",
                         width: '300px',
-                        height: '400px',
                         onBeforeOpen: () => {
                             timerInterval = setInterval(() => {
                                 const content = Swal.getContent()

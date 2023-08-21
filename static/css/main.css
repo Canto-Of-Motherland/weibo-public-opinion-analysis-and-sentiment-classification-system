@@ -99,6 +99,16 @@ body {
     letter-spacing: 2px;
 }
 
+.btn_out:hover {
+    transform: translateY(-50%) scale(1.1);
+    transition-duration: 200ms;
+}
+
+.btn_out:active {
+    transform: translateY(-50%) scale(1);
+    transition-duration: 200ms;
+}
+
 .bottom {
     left: 0;
     bottom: 0;
